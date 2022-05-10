@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 	return (
@@ -26,47 +27,47 @@ const Header = () => {
 						className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
 					>
 						<li>
-							<a href="/home">Home</a>
+							<Link to="/home">Home</Link>
 						</li>
 						<li>
-							<a href="/about">About</a>
+							<Link to="/about">About</Link>
 						</li>
 						<li>
-							<a href="/appointment">Appointment</a>
+							<Link to="/appointment">Appointment</Link>
 						</li>
 						<li>
-							<a href="/reviews">Reviews</a>
+							<Link to="/reviews">Reviews</Link>
 						</li>
 						<li>
-							<a href="/contact-Us">Contact Us</a>
+							<Link to="/contact-us">Contact Us</Link>
 						</li>
 					</ul>
 				</div>
-				<a href="/" className="btn btn-ghost normal-case text-xl">
+				<Link to="/" className="btn btn-ghost normal-case text-xl">
 					Doctors Portal
-				</a>
+				</Link>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal p-0">
 					<li>
-						<a href="/home">Home</a>
+						<Link to="/home">Home</Link>
 					</li>
 					<li>
-						<a href="/about">About</a>
+						<Link to="/about">About</Link>
 					</li>
 					<li>
-						<a href="/appointment">Appointment</a>
+						<Link to="/appointment">Appointment</Link>
 					</li>
 					<li>
-						<a href="/reviews">Reviews</a>
+						<Link to="/reviews">Reviews</Link>
 					</li>
 					<li>
-						<a href="/contact-Us">Contact Us</a>
+						<Link to="/contact-us">Contact Us</Link>
 					</li>
 				</ul>
 			</div>
 			<div className="navbar-end">
-				<a href="/login">Login</a>
+				<Link to="/login">Login</Link>
 			</div>
 		</div>
 	);
