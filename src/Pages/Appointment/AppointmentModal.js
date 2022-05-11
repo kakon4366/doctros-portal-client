@@ -1,7 +1,12 @@
+import { format } from "date-fns";
 import React from "react";
 
-const AppointmentModal = ({ treatment }) => {
+const AppointmentModal = ({ treatment, date }) => {
 	const { name, slots } = treatment;
+
+	const handleAppointment = (e) => {
+		e.preventDefault();
+	};
 	return (
 		<div>
 			<input type="checkbox" id="appointment-modal" class="modal-toggle" />
@@ -13,19 +18,40 @@ const AppointmentModal = ({ treatment }) => {
 					>
 						✕
 					</label>
-					<h3 class="font-bold text-lg text-secondary">{name}</h3>
-					<form action="">
+					<h3 class="font-bold text-2xl text-secondary">{name}</h3>
+					<form onSubmit={handleAppointment} action="" className="mt-12">
 						<input
 							type="text"
-							placeholder="Type here"
-							class="input input-bordered w-full max-w-xs"
+							value={format(date, "PP")}
+							disabled
+							class="input input-bordered w-full mb-4"
+						/>
+						<select class="select select-bordered w-full mb-4">
+							{slots.map((slot) => (
+								<option key={slot}>{slot}</option>
+							))}
+						</select>
+						<input
+							type="text"
+							placeholder="Full Name"
+							class="input input-bordered w-full mb-4"
+						/>
+						<input
+							type="email"
+							placeholder="Email Address"
+							class="input input-bordered w-full mb-4"
+						/>
+						<input
+							type="text"
+							placeholder="Phone Number"
+							class="input input-bordered w-full mb-4"
+						/>
+						<input
+							type="submit"
+							value="Submit"
+							className="btn btn-accent w-full text-lg"
 						/>
 					</form>
-					<div class="modal-action">
-						<label for="appointment-modal" class="btn btn-secondary">
-							Booking
-						</label>
-					</div>
 				</div>
 			</div>
 		</div>
