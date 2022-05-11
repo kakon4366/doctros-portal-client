@@ -46,20 +46,20 @@ const Services = () => {
 				</div>
 				{/* hero */}
 				<div className="mt-36">
-					<div class="hero min-h-screen">
-						<div class="hero-content flex-col lg:flex-row">
+					<div className="hero min-h-screen">
+						<div className="hero-content flex-col lg:flex-row">
 							<div className="flex-1">
 								<img
 									src={heroImg}
-									class="sm:max-w-sm lg:max-w-lg mx-auto rounded-lg shadow-2xl"
+									className="sm:max-w-sm lg:max-w-lg mx-auto rounded-lg shadow-2xl"
 									alt=""
 								/>
 							</div>
 							<div className="flex-1">
-								<h1 class="text-5xl font-bold">
+								<h1 className="text-5xl font-bold">
 									Exceptional Dental Care, on Your Terms
 								</h1>
-								<p class="py-6">
+								<p className="py-6">
 									It is a long established fact that a reader will be
 									distracted by the readable content of a page when
 									looking at its layout. The point of using Lorem

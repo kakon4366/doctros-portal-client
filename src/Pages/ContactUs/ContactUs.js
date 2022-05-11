@@ -15,15 +15,15 @@ const ContactUs = () => {
 						<input
 							type="text"
 							placeholder="E-mail Address"
-							class="input input-bordered input-secondary w-full mb-6"
+							className="input input-bordered input-secondary w-full mb-6"
 						/>
 						<input
 							type="text"
 							placeholder="Subject"
-							class="input input-bordered input-secondary w-full mb-6"
+							className="input input-bordered input-secondary w-full mb-6"
 						/>
 						<textarea
-							class="textarea textarea-secondary mb-6"
+							className="textarea textarea-secondary mb-6"
 							placeholder="Your message"
 						></textarea>
 						<div className="text-center">

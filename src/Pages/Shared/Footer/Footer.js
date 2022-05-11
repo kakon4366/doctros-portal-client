@@ -34,7 +34,7 @@ const Footer = () => {
 						<a className="link link-hover">New York - 101010 Hudson</a>
 					</div>
 				</div>
-				<div class="footer footer-center text-base-content mt-20 mb-8">
+				<div className="footer footer-center text-base-content mt-20 mb-8">
 					<div>
 						<p>Copyright &copy; {year} All Rights Reserved</p>
 					</div>
