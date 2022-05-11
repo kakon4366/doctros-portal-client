@@ -36,7 +36,7 @@ const Services = () => {
 		<section className="my-28">
 			<div className="container mx-auto">
 				<div className="text-center">
-					<SectionTitle></SectionTitle>
+					<SectionTitle>OUR SERVICES</SectionTitle>
 					<h2 className="text-4xl ">Services We Provide</h2>
 				</div>
 				<div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
