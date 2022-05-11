@@ -1,8 +1,6 @@
 import React from "react";
-import { Button } from "react-day-picker";
-import PrimaryButton from "./PrimaryButton";
 
-const AppointmentService = ({ appointmentService }) => {
+const AppointmentService = ({ appointmentService, setTreatment }) => {
 	const { name, slots } = appointmentService;
 	return (
 		<div class="card bg-base-100 shadow-md">
@@ -19,12 +17,14 @@ const AppointmentService = ({ appointmentService }) => {
 					{slots.length} {slots.length > 1 ? "spaces" : "space"} Available
 				</p>
 				<div class="card-actions mt-3">
-					<button
+					<label
+						htmlFor="appointment-modal"
 						disabled={slots.length === 0}
 						className="btn btn-primary text-white bg-gradient-to-r from-secondary to-primary"
+						onClick={() => setTreatment(appointmentService)}
 					>
 						Book Appointment
-					</button>
+					</label>
 				</div>
 			</div>
 		</div>
