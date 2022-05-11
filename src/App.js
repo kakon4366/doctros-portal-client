@@ -8,10 +8,11 @@ import Header from "./Pages/Shared/Header/Header";
 import Reviews from "./Pages/Reviews/Reviews";
 import Login from "./Pages/Login/Login";
 import NotFound404 from "./Pages/Shared/NotFound404/NotFound404";
+import Footer from "./Pages/Shared/Footer/Footer";
 
 function App() {
 	return (
-		<div>
+		<>
 			<Header></Header>
 
 			<Routes>
@@ -24,7 +25,9 @@ function App() {
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="*" element={<NotFound404 />}></Route>
 			</Routes>
-		</div>
+
+			<Footer></Footer>
+		</>
 	);
 }
 
