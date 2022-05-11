@@ -1,11 +1,18 @@
 import React from "react";
 import chair from "../../assets/images/chair.png";
 import PrimaryButton from "../../Components/PrimaryButton";
+import backgroundImage from "../../assets/images/bg.png";
 
 const Hero = () => {
 	return (
-		<section>
-			<div className="hero min-h-screen bg-base-200">
+		<section
+			style={{
+				background: `url(${backgroundImage})`,
+				backgroundPosition: "cover",
+			}}
+			className="bg-bottom"
+		>
+			<div className="hero min-h-screen">
 				<div className="hero-content flex-col lg:flex-row-reverse">
 					<div className="flex-1">
 						<img
