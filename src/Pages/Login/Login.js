@@ -2,23 +2,46 @@ import React from "react";
 import { Link } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const Login = () => {
+	const [signInWithEmailAndPassword, loading, error] =
+		useSignInWithEmailAndPassword(auth);
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
 
+	let loginError;
+	if (error) {
+		const loginErrorMessage = error.message
+			.split("/")[1]
+			.slice(0, error.message.split("/")[1].length - 2);
+
+		const lowerWord = loginErrorMessage.slice(1, loginErrorMessage.length);
+		const upperWord = loginErrorMessage.charAt(0).toUpperCase();
+		const errorMessage = upperWord + lowerWord;
+		const errorPart = errorMessage.split("-").join(" ");
+		loginError = (
+			<p className="text-red-500">
+				<small>{errorPart}</small>
+			</p>
+		);
+	}
+
 	const onSubmit = (data) => {
 		console.log(data);
+		signInWithEmailAndPassword(data.email, data.password);
 	};
+
 	return (
 		<section>
 			<div className="container mx-auto flex justify-center items-center h-screen">
-				<div class="card w-96 bg-base-100 shadow-lg">
-					<div class="card-body">
-						<h2 class="text-xl font-bold text-center">Login</h2>
+				<div className="card w-96 bg-base-100 shadow-lg">
+					<div className="card-body">
+						<h2 className="text-xl font-bold text-center">Login</h2>
 						<form onSubmit={handleSubmit(onSubmit)}>
 							<label htmlFor="" className="label">
 								Email
@@ -26,7 +49,7 @@ const Login = () => {
 							<input
 								type="email"
 								placeholder="Email Address"
-								class="input input-bordered input-accent w-full"
+								className="input input-bordered input-accent w-full"
 								{...register("email", {
 									required: {
 										value: true,
@@ -38,14 +61,14 @@ const Login = () => {
 									},
 								})}
 							/>
-							<label class="label">
+							<label className="label">
 								{errors.email?.type === "required" && (
-									<span class="label-text-alt text-red-500">
+									<span className="label-text-alt text-red-500">
 										{errors.email.message}
 									</span>
 								)}
 								{errors.email?.type === "pattern" && (
-									<span class="label-text-alt text-red-500">
+									<span className="label-text-alt text-red-500">
 										{errors.email.message}
 									</span>
 								)}
@@ -57,7 +80,7 @@ const Login = () => {
 							<input
 								type="password"
 								placeholder="Password"
-								class="input input-bordered input-accent w-full"
+								className="input input-bordered input-accent w-full"
 								{...register("password", {
 									required: {
 										value: true,
@@ -72,31 +95,35 @@ const Login = () => {
 
 							<label htmlFor="" className="label">
 								{errors.password?.type === "required" && (
-									<span class="label-text-alt text-red-500">
+									<span className="label-text-alt text-red-500">
 										{errors.password.message}
 									</span>
 								)}
 								{errors.password?.type === "minLength" && (
-									<span class="label-text-alt text-red-500">
+									<span className="label-text-alt text-red-500">
 										{errors.password.message}
 									</span>
 								)}
 							</label>
 
-							<span className="text-[12px] block">
-								Forgot Password ?
-							</span>
-							<input
+							{loginError}
+							<button
 								type="submit"
-								value="Login"
-								className="btn btn-accent w-full mt-3"
-							/>
+								className={`btn btn-accent w-full mt-3 ${
+									loading ? "loading" : ""
+								}`}
+							>
+								Login
+							</button>
 							<p className="text-sm text-center mt-3">
 								New to Doctors Portal?{" "}
 								<Link className="text-secondary" to="/sign-up">
 									Create new account
 								</Link>
 							</p>
+							<span className="text-[12px] block text-center">
+								Forgot Password ?
+							</span>
 						</form>
 						<SocialLogin></SocialLogin>
 					</div>

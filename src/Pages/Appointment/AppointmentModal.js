@@ -9,24 +9,28 @@ const AppointmentModal = ({ treatment, date }) => {
 	};
 	return (
 		<div>
-			<input type="checkbox" id="appointment-modal" class="modal-toggle" />
-			<div class="modal modal-bottom sm:modal-middle">
-				<div class="modal-box">
+			<input
+				type="checkbox"
+				id="appointment-modal"
+				className="modal-toggle"
+			/>
+			<div className="modal modal-bottom sm:modal-middle">
+				<div className="modal-box">
 					<label
 						for="appointment-modal"
-						class="btn btn-sm btn-circle absolute right-2 top-2"
+						className="btn btn-sm btn-circle absolute right-2 top-2"
 					>
 						✕
 					</label>
-					<h3 class="font-bold text-2xl text-secondary">{name}</h3>
+					<h3 className="font-bold text-2xl text-secondary">{name}</h3>
 					<form onSubmit={handleAppointment} action="" className="mt-12">
 						<input
 							type="text"
 							value={format(date, "PP")}
 							disabled
-							class="input input-bordered w-full mb-4"
+							className="input input-bordered w-full mb-4"
 						/>
-						<select class="select select-bordered w-full mb-4">
+						<select className="select select-bordered w-full mb-4">
 							{slots.map((slot) => (
 								<option key={slot}>{slot}</option>
 							))}
@@ -34,17 +38,17 @@ const AppointmentModal = ({ treatment, date }) => {
 						<input
 							type="text"
 							placeholder="Full Name"
-							class="input input-bordered w-full mb-4"
+							className="input input-bordered w-full mb-4"
 						/>
 						<input
 							type="email"
 							placeholder="Email Address"
-							class="input input-bordered w-full mb-4"
+							className="input input-bordered w-full mb-4"
 						/>
 						<input
 							type="text"
 							placeholder="Phone Number"
-							class="input input-bordered w-full mb-4"
+							className="input input-bordered w-full mb-4"
 						/>
 						<input
 							type="submit"
