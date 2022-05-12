@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SocialLogin from "../Login/SocialLogin";
 
 const SignUp = () => {
 	return (
@@ -42,10 +43,7 @@ const SignUp = () => {
 								</Link>
 							</p>
 						</form>
-						<div class="divider">OR</div>
-						<button className="btn btn-outline">
-							CONTINUE WITH GOOGLE
-						</button>
+						<SocialLogin></SocialLogin>
 					</div>
 				</div>
 			</div>
