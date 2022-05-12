@@ -1,14 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const SignUp = () => {
 	return (
 		<section>
 			<div className="container mx-auto flex justify-center items-center h-screen">
 				<div class="card w-96 bg-base-100 shadow-lg">
 					<div class="card-body">
-						<h2 class="text-xl font-bold text-center">Login</h2>
+						<h2 class="text-xl font-bold text-center">Sign Up</h2>
 						<form action="">
+							<label htmlFor="">Name</label>
+							<input
+								type="text"
+								placeholder="Name"
+								class="input mb-3 input-bordered input-accent w-full"
+							/>
 							<label htmlFor="">Email</label>
 							<input
 								type="email"
@@ -30,9 +36,9 @@ const Login = () => {
 								className="btn btn-accent w-full mt-3"
 							/>
 							<p className="text-sm text-center mt-3">
-								New to Doctors Portal?{" "}
-								<Link className="text-secondary" to="/sign-up">
-									Create new account
+								Already have an account?{" "}
+								<Link className="text-secondary" to="/login">
+									Login
 								</Link>
 							</p>
 						</form>
@@ -47,4 +53,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default SignUp;

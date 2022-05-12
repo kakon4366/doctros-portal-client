@@ -9,6 +9,7 @@ import Reviews from "./Pages/Reviews/Reviews";
 import Login from "./Pages/Login/Login";
 import NotFound404 from "./Pages/Shared/NotFound404/NotFound404";
 import Footer from "./Pages/Shared/Footer/Footer";
+import SignUp from "./Pages/SignUp/SignUp";
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 				<Route path="/reviews" element={<Reviews />}></Route>
 				<Route path="/contact-us" element={<ContactUs />}></Route>
 				<Route path="/login" element={<Login />}></Route>
+				<Route path="/sign-up" element={<SignUp />}></Route>
 				<Route path="*" element={<NotFound404 />}></Route>
 			</Routes>
 
