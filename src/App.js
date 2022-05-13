@@ -11,6 +11,7 @@ import NotFound404 from "./Pages/Shared/NotFound404/NotFound404";
 import Footer from "./Pages/Shared/Footer/Footer";
 import SignUp from "./Pages/SignUp/SignUp";
 import RequireAuth from "./Pages/Login/RequireAuth";
+import ResetPassword from "./Pages/Login/ResetPassword";
 
 function App() {
 	return (
@@ -33,6 +34,7 @@ function App() {
 				<Route path="/contact-us" element={<ContactUs />}></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/sign-up" element={<SignUp />}></Route>
+				<Route path="/reset-password" element={<ResetPassword />}></Route>
 				<Route path="*" element={<NotFound404 />}></Route>
 			</Routes>
 

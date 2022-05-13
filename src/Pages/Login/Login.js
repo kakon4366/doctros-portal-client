@@ -123,10 +123,13 @@ const Login = () => {
 									Create new account
 								</Link>
 							</p>
-							<span className="text-[12px] block text-center">
-								Forgot Password ?
-							</span>
 						</form>
+						<button
+							onClick={() => navigate("/reset-password")}
+							className="text-[12px] block text-slate-500 hover:text-secondary text-right"
+						>
+							Forgot Password?
+						</button>
 						<SocialLogin></SocialLogin>
 					</div>
 				</div>
