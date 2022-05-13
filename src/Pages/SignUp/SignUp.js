@@ -1,7 +1,7 @@
 import React from "react";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "../Login/SocialLogin";
 
@@ -13,6 +13,21 @@ const SignUp = () => {
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
+
+	const navigate = useNavigate();
+
+	if (user) {
+		navigate("/appointment");
+	}
+
+	let signUpError;
+	if (error) {
+		signUpError = (
+			<p className="text-red-500">
+				<small>{error.message}</small>
+			</p>
+		);
+	}
 
 	const onSubmit = (data, e) => {
 		createUserWithEmailAndPassword(data.email, data.password);
@@ -115,11 +130,16 @@ const SignUp = () => {
 								</label>
 							</div>
 
-							<input
+							{signUpError}
+
+							<button
 								type="submit"
-								value="Login"
-								className="btn btn-accent w-full mt-3"
-							/>
+								className={`btn btn-accent w-full mt-3 ${
+									loading ? "loading" : ""
+								}`}
+							>
+								Sign Up
+							</button>
 							<p className="text-sm text-center mt-3">
 								Already have an account?{" "}
 								<Link className="text-secondary" to="/login">

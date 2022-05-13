@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const Login = () => {
-	const [signInWithEmailAndPassword, loading, error] =
+	const [signInWithEmailAndPassword, user, loading, error] =
 		useSignInWithEmailAndPassword(auth);
 	const {
 		register,
@@ -14,19 +14,19 @@ const Login = () => {
 		handleSubmit,
 	} = useForm();
 
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (user) {
+			navigate("/appointment");
+		}
+	}, [user, navigate]);
+
 	let loginError;
 	if (error) {
-		const loginErrorMessage = error.message
-			.split("/")[1]
-			.slice(0, error.message.split("/")[1].length - 2);
-
-		const lowerWord = loginErrorMessage.slice(1, loginErrorMessage.length);
-		const upperWord = loginErrorMessage.charAt(0).toUpperCase();
-		const errorMessage = upperWord + lowerWord;
-		const errorPart = errorMessage.split("-").join(" ");
 		loginError = (
 			<p className="text-red-500">
-				<small>{errorPart}</small>
+				<small>{error.message}</small>
 			</p>
 		);
 	}
@@ -105,7 +105,6 @@ const Login = () => {
 									</span>
 								)}
 							</label>
-
 							{loginError}
 							<button
 								type="submit"
