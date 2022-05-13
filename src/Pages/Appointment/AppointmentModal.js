@@ -1,7 +1,10 @@
 import { format } from "date-fns";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import auth from "../../firebase.init";
 
 const AppointmentModal = ({ treatment, date }) => {
+	const [user] = useAuthState(auth);
 	const { name, slots } = treatment;
 
 	const handleAppointment = (e) => {
@@ -17,7 +20,7 @@ const AppointmentModal = ({ treatment, date }) => {
 			<div className="modal modal-bottom sm:modal-middle">
 				<div className="modal-box">
 					<label
-						for="appointment-modal"
+						htmlFor="appointment-modal"
 						className="btn btn-sm btn-circle absolute right-2 top-2"
 					>
 						✕
@@ -39,11 +42,15 @@ const AppointmentModal = ({ treatment, date }) => {
 							type="text"
 							placeholder="Full Name"
 							className="input input-bordered w-full mb-4"
+							value={user.displayName || ""}
+							disabled
 						/>
 						<input
 							type="email"
 							placeholder="Email Address"
 							className="input input-bordered w-full mb-4"
+							value={user.email || ""}
+							disabled
 						/>
 						<input
 							type="text"
