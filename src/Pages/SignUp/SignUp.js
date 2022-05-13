@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import {
+	useCreateUserWithEmailAndPassword,
+	useUpdateProfile,
+} from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -8,6 +11,8 @@ import SocialLogin from "../Login/SocialLogin";
 const SignUp = () => {
 	const [createUserWithEmailAndPassword, user, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
+	const [updateProfile, updating, Updateerror] = useUpdateProfile(auth);
+
 	const {
 		register,
 		formState: { errors },
@@ -26,7 +31,7 @@ const SignUp = () => {
 	}, [user, navigate, from]);
 
 	let signUpError;
-	if (error) {
+	if (error || Updateerror) {
 		signUpError = (
 			<p className="text-red-500">
 				<small>{error.message}</small>
@@ -34,8 +39,9 @@ const SignUp = () => {
 		);
 	}
 
-	const onSubmit = (data, e) => {
-		createUserWithEmailAndPassword(data.email, data.password);
+	const onSubmit = async (data, e) => {
+		await createUserWithEmailAndPassword(data.email, data.password);
+		await updateProfile({ displayName: data.name });
 		e.target.reset();
 	};
 	return (
@@ -140,7 +146,7 @@ const SignUp = () => {
 							<button
 								type="submit"
 								className={`btn btn-accent w-full mt-3 ${
-									loading ? "loading" : ""
+									loading || updating ? "loading" : ""
 								}`}
 							>
 								Sign Up
