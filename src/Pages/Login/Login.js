@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
@@ -15,12 +15,15 @@ const Login = () => {
 	} = useForm();
 
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	let from = location.state?.from?.pathname || "/";
 
 	useEffect(() => {
 		if (user) {
-			navigate("/appointment");
+			navigate(from, { replace: true });
 		}
-	}, [user, navigate]);
+	}, [user, navigate, from]);
 
 	let loginError;
 	if (error) {
