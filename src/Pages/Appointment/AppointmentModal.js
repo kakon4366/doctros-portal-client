@@ -2,13 +2,40 @@ import { format } from "date-fns";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import { toast } from "react-toastify";
 
-const AppointmentModal = ({ treatment, date }) => {
+const AppointmentModal = ({ treatment, date, setTreatment }) => {
 	const [user] = useAuthState(auth);
-	const { name, slots } = treatment;
+	const { _id, name, slots } = treatment;
+	const formattedDate = format(date, "PP");
 
 	const handleAppointment = (e) => {
 		e.preventDefault();
+		const slot = e.target.slot.value;
+
+		const booking = {
+			treatmentId: _id,
+			treatment: name,
+			date: formattedDate,
+			slot,
+			patient: user.email,
+			patientName: user.displayName,
+			phone: e.target.phone.value,
+		};
+
+		fetch("http://localhost:5000/booking", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(booking),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log(data);
+				toast.success("Booking add success");
+				setTreatment(null);
+			});
 	};
 	return (
 		<div>
@@ -28,17 +55,22 @@ const AppointmentModal = ({ treatment, date }) => {
 					<h3 className="font-bold text-2xl text-secondary">{name}</h3>
 					<form onSubmit={handleAppointment} action="" className="mt-12">
 						<input
+							name="data"
 							type="text"
 							value={format(date, "PP")}
 							disabled
 							className="input input-bordered w-full mb-4"
 						/>
-						<select className="select select-bordered w-full mb-4">
+						<select
+							name="slot"
+							className="select select-bordered w-full mb-4"
+						>
 							{slots.map((slot) => (
 								<option key={slot}>{slot}</option>
 							))}
 						</select>
 						<input
+							name="name"
 							type="text"
 							placeholder="Full Name"
 							className="input input-bordered w-full mb-4"
@@ -46,6 +78,7 @@ const AppointmentModal = ({ treatment, date }) => {
 							disabled
 						/>
 						<input
+							name="email"
 							type="email"
 							placeholder="Email Address"
 							className="input input-bordered w-full mb-4"
@@ -53,6 +86,7 @@ const AppointmentModal = ({ treatment, date }) => {
 							disabled
 						/>
 						<input
+							name="phone"
 							type="text"
 							placeholder="Phone Number"
 							className="input input-bordered w-full mb-4"

@@ -12,6 +12,8 @@ import Footer from "./Pages/Shared/Footer/Footer";
 import SignUp from "./Pages/SignUp/SignUp";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import ResetPassword from "./Pages/Login/ResetPassword";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
 	return (
@@ -39,6 +41,7 @@ function App() {
 			</Routes>
 
 			<Footer></Footer>
+			<ToastContainer></ToastContainer>
 		</>
 	);
 }

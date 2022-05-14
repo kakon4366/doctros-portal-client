@@ -31,6 +31,7 @@ const AvailableAppointments = ({ date }) => {
 				<AppointmentModal
 					date={date}
 					treatment={treatment}
+					setTreatment={setTreatment}
 				></AppointmentModal>
 			)}
 		</div>
