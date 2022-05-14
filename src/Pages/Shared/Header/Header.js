@@ -24,6 +24,11 @@ const Header = () => {
 			<li>
 				<Link to="/contact-us">Contact Us</Link>
 			</li>
+			{user && (
+				<li>
+					<Link to="/dashboard">Dashboard</Link>
+				</li>
+			)}
 			<li>
 				{user ? (
 					<button onClick={() => signOut(auth)}>Logout</button>
