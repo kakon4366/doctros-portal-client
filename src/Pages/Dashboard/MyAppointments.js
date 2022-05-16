@@ -28,7 +28,6 @@ const MyAppointments = () => {
 				})
 				.then((data) => {
 					setAppointments(data);
-					console.log("data", data);
 				});
 		}
 	}, [user, navigate]);

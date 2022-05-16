@@ -6,8 +6,6 @@ const useToken = (user) => {
 		const email = user?.user?.email;
 		const currentUser = { email: email };
 
-		console.log("user email", email);
-
 		if (email) {
 			console.log("asce re....");
 			fetch(`http://localhost:5000/user/${email}`, {
@@ -19,7 +17,6 @@ const useToken = (user) => {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log("inserted token data", data);
 					const accessToken = data.token;
 					localStorage.setItem("access_token", accessToken);
 					setToken(accessToken);
