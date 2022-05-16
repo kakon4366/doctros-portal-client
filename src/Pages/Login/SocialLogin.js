@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
@@ -14,9 +14,11 @@ const SocialLogin = () => {
 
 	let from = location.state?.from?.pathname || "/";
 
-	if (token) {
-		navigate(from, { replace: true });
-	}
+	useEffect(() => {
+		if (token) {
+			navigate(from, { replace: true });
+		}
+	}, [token, from, navigate]);
 
 	return (
 		<div>

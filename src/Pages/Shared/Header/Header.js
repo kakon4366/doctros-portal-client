@@ -31,7 +31,14 @@ const Header = () => {
 			)}
 			<li>
 				{user ? (
-					<button onClick={() => signOut(auth)}>Logout</button>
+					<button
+						onClick={() => {
+							signOut(auth);
+							localStorage.removeItem("access_token");
+						}}
+					>
+						Logout
+					</button>
 				) : (
 					<Link to="/login">Login</Link>
 				)}

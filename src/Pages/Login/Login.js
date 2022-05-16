@@ -4,10 +4,14 @@ import SocialLogin from "./SocialLogin";
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
+import useToken from "../../Hooks/useToken";
 
 const Login = () => {
 	const [signInWithEmailAndPassword, user, loading, error] =
 		useSignInWithEmailAndPassword(auth);
+
+	const [token] = useToken(user);
+
 	const {
 		register,
 		formState: { errors },
@@ -20,10 +24,10 @@ const Login = () => {
 	let from = location.state?.from?.pathname || "/";
 
 	useEffect(() => {
-		if (user) {
+		if (token) {
 			navigate(from, { replace: true });
 		}
-	}, [user, navigate, from]);
+	}, [token, navigate, from]);
 
 	let loginError;
 	if (error) {
