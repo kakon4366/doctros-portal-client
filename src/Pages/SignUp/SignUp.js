@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
 import SocialLogin from "../Login/SocialLogin";
+import useToken from "../../Hooks/useToken";
 
 const SignUp = () => {
 	const [createUserWithEmailAndPassword, user, loading, error] =
@@ -19,16 +20,18 @@ const SignUp = () => {
 		handleSubmit,
 	} = useForm();
 
+	const [token] = useToken(user);
+
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	let from = location.state?.from?.pathname || "/";
 
 	useEffect(() => {
-		if (user) {
+		if (token) {
 			navigate(from, { replace: true });
 		}
-	}, [user, navigate, from]);
+	}, [token, navigate, from]);
 
 	let signUpError;
 	if (error || Updateerror) {
