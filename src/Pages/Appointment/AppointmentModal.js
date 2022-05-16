@@ -23,7 +23,7 @@ const AppointmentModal = ({ treatment, date, setTreatment, refetch }) => {
 			phone: e.target.phone.value,
 		};
 
-		fetch("http://localhost:5000/booking", {
+		fetch("https://glacial-spire-41863.herokuapp.com/booking", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json",

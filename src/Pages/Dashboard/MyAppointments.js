@@ -12,12 +12,17 @@ const MyAppointments = () => {
 
 	useEffect(() => {
 		if (user) {
-			fetch(`http://localhost:5000/booking?patient=${user.email}`, {
-				method: "GET",
-				headers: {
-					authorization: `bearer ${localStorage.getItem("access_token")}`,
-				},
-			})
+			fetch(
+				`https://glacial-spire-41863.herokuapp.com/booking?patient=${user.email}`,
+				{
+					method: "GET",
+					headers: {
+						authorization: `bearer ${localStorage.getItem(
+							"access_token"
+						)}`,
+					},
+				}
+			)
 				.then((res) => {
 					if (res.status === 401 || res.status === 403) {
 						signOut(auth);
