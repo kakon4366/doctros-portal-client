@@ -58,7 +58,14 @@ function App() {
 							</RequireAdmin>
 						}
 					></Route>
-					<Route path="add-doctor" element={<AddDoctors />}></Route>
+					<Route
+						path="add-doctor"
+						element={
+							<RequireAdmin>
+								<AddDoctors />
+							</RequireAdmin>
+						}
+					></Route>
 				</Route>
 				<Route path="/reviews" element={<Reviews />}></Route>
 				<Route path="/contact-us" element={<ContactUs />}></Route>
