@@ -1,5 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useQuery } from "react-query";
+import Loading from "../Shared/Loading/Loading";
 
 const AddDoctors = () => {
 	const {
@@ -8,10 +10,18 @@ const AddDoctors = () => {
 		handleSubmit,
 	} = useForm();
 
+	const { data: services, isLoading } = useQuery("services", () =>
+		fetch("http://localhost:5000/services").then((res) => res.json())
+	);
+
 	const onSubmit = async (data, e) => {
 		console.log("data", data);
 		e.target.reset();
 	};
+
+	if (isLoading) {
+		return <Loading></Loading>;
+	}
 
 	return (
 		<div>
@@ -78,24 +88,18 @@ const AddDoctors = () => {
 					<label htmlFor="" className="label">
 						Speciality
 					</label>
-					<input
-						type="text"
-						placeholder="Speciality"
+
+					<select
+						{...register("specialty")}
 						className="input input-bordered input-accent w-full"
-						{...register("speciality", {
-							required: {
-								value: true,
-								message: "Speciality is Required",
-							},
-						})}
-					/>
-					<label className="label">
-						{errors.password?.type === "required" && (
-							<span className="label-text-alt text-red-500">
-								{errors.password.message}
-							</span>
-						)}
-					</label>
+					>
+						<option selected>Select One</option>
+						{services.map((service) => (
+							<option key={service._id} value={service.name}>
+								{service.name}
+							</option>
+						))}
+					</select>
 				</div>
 
 				<button type="submit" className={`btn btn-accent w-full mt-3`}>
