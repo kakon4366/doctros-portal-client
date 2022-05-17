@@ -17,7 +17,7 @@ const Dashboard = () => {
 				<h2 className="text-4xl text-secondary font-bold mb-4">
 					Welcome to Your Dashboard
 				</h2>
-				{/* <!-- Page content here --> */}
+
 				<Outlet></Outlet>
 				<label
 					htmlFor="my-drawer"
@@ -29,7 +29,6 @@ const Dashboard = () => {
 			<div className="drawer-side">
 				<label htmlFor="my-drawer" className="drawer-overlay"></label>
 				<ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-					{/* <!-- Sidebar content here --> */}
 					<li>
 						<Link to="/dashboard">My Appointments</Link>
 					</li>
@@ -40,9 +39,14 @@ const Dashboard = () => {
 						<Link to="/dashboard/history">History</Link>
 					</li>
 					{admin && (
-						<li>
-							<Link to="/dashboard/users">Users</Link>
-						</li>
+						<>
+							<li>
+								<Link to="/dashboard/users">Users</Link>
+							</li>
+							<li>
+								<Link to="/dashboard/add-doctor">Add Doctor</Link>
+							</li>
+						</>
 					)}
 				</ul>
 			</div>
