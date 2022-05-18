@@ -7,7 +7,6 @@ const useToken = (user) => {
 		const currentUser = { email: email };
 
 		if (email) {
-			console.log("asce re....");
 			fetch(`https://glacial-spire-41863.herokuapp.com/user/${email}`, {
 				method: "PUT",
 				headers: {
