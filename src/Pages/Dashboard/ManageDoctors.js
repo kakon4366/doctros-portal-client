@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "react-query";
 import Loading from "../Shared/Loading/Loading";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 import ManageDoctorsRow from "./ManageDoctorsRow";
 
 const ManageDoctors = () => {
+	const [deletingModal, setDeletingModal] = useState(null);
+
 	const {
 		data: doctors,
 		isLoading,
@@ -22,7 +25,7 @@ const ManageDoctors = () => {
 
 	return (
 		<div>
-			<h2 className="text-2xl">Manage Doctors {doctors.length}</h2>
+			<h2 className="text-sm italic mb-2">Total Doctors {doctors.length}</h2>
 			<div className="overflow-x-auto">
 				<table className="table w-full">
 					<thead>
@@ -40,12 +43,19 @@ const ManageDoctors = () => {
 								key={doctor._id}
 								doctor={doctor}
 								index={index}
-								refetch={refetch}
+								setDeletingModal={setDeletingModal}
 							></ManageDoctorsRow>
 						))}
 					</tbody>
 				</table>
 			</div>
+			{deletingModal && (
+				<DeleteConfirmModal
+					deletingModal={deletingModal}
+					refetch={refetch}
+					setDeletingModal={setDeletingModal}
+				></DeleteConfirmModal>
+			)}
 		</div>
 	);
 };
