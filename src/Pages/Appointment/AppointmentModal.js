@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const AppointmentModal = ({ treatment, date, setTreatment, refetch }) => {
 	const [user] = useAuthState(auth);
-	const { _id, name, slots } = treatment;
+	const { _id, name, slots, price } = treatment;
 	const formattedDate = format(date, "PP");
 
 	const handleAppointment = (e) => {
@@ -18,6 +18,7 @@ const AppointmentModal = ({ treatment, date, setTreatment, refetch }) => {
 			treatment: name,
 			date: formattedDate,
 			slot,
+			price,
 			patient: user.email,
 			patientName: user.displayName,
 			phone: e.target.phone.value,
