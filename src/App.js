@@ -22,6 +22,7 @@ import Users from "./Pages/Dashboard/Users";
 import RequireAdmin from "./Pages/Login/RequireAdmin";
 import AddDoctors from "./Pages/Dashboard/AddDoctors";
 import ManageDoctors from "./Pages/Dashboard/ManageDoctors";
+import Payment from "./Pages/Dashboard/Payment";
 
 function App() {
 	return (
@@ -75,6 +76,7 @@ function App() {
 							</RequireAdmin>
 						}
 					></Route>
+					<Route path="payment/:id" element={<Payment />}></Route>
 				</Route>
 				<Route path="/reviews" element={<Reviews />}></Route>
 				<Route path="/contact-us" element={<ContactUs />}></Route>
