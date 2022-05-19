@@ -50,7 +50,7 @@ const Payment = () => {
 				<div className="card-body">
 					<h2 className="text-2xl font-semibold mb-4">Payment</h2>
 					<Elements stripe={stripePromise}>
-						<CheckoutForm />
+						<CheckoutForm appointment={appointment} />
 					</Elements>
 				</div>
 			</div>
