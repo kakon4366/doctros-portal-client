@@ -15,7 +15,9 @@ const AddDoctors = () => {
 	const imageStorageKey = "6b04d9644890fb0c1445df403e1fbd5a";
 
 	const { data: services, isLoading } = useQuery("services", () =>
-		fetch("http://localhost:5000/services").then((res) => res.json())
+		fetch("https://glacial-spire-41863.herokuapp.com/services").then((res) =>
+			res.json()
+		)
 	);
 
 	if (isLoading) {
@@ -45,7 +47,7 @@ const AddDoctors = () => {
 					};
 
 					//send doctor to database
-					fetch("http://localhost:5000/doctor", {
+					fetch("https://glacial-spire-41863.herokuapp.com/doctor", {
 						method: "POST",
 						headers: {
 							"content-type": "application/json",

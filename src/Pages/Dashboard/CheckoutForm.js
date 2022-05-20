@@ -11,7 +11,7 @@ const CheckoutForm = ({ appointment }) => {
 	const { price, patient, patientName } = appointment;
 
 	useEffect(() => {
-		fetch("http://localhost:5000/create-payment-intent", {
+		fetch("https://glacial-spire-41863.herokuapp.com/create-payment-intent", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json",
